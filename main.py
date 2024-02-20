@@ -59,7 +59,7 @@ print(diamond.head())
 
 
 #X maiusculo é dado de entrada/feature/ variaveis independentes
-#y minusculo é o target
+#y minusculo é o target/dados de saida
 #iloc > [linhas , colunas] ---> por indice
 #loc > [linhas, colunas] ----> por rotulo
 
