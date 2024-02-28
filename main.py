@@ -52,12 +52,14 @@ print(diamond.head())
 vetor_numpy = preco.values
 vetor_corte = diamond['cut'].values
 
+
+
 le = LabelEncoder()
 diamond['cut'] = le.fit_transform(diamond['cut'])
-
+y = diamond['cut']
 print(diamond.head())
 
-
+#label encoder gera dados tabelares para o cut, isso é valores numéricos
 #X maiusculo é dado de entrada/feature/ variaveis independentes
 #y minusculo é o target/dados de saida
 #iloc > [linhas , colunas] ---> por indice
@@ -65,4 +67,31 @@ print(diamond.head())
 
 tamanhos = diamond.iloc[:, 7:]
 print(tamanhos[:5])
-y = preco
+print(y[:5])
+
+
+#ele já embaralha a amostra pelo train_text_split
+x_train, x_test, y_train, y_test = train_text_split(tamanhos, y, test_size=0.30, random_state=42)
+
+print(x_train)
+
+modelo_KNN = KNeighborsClassifier(n_neighbors=5)
+modelo_KNN.fit(x_train, y_train)
+
+#superviosionada pq você consegue verificar a acertividade
+y_predict_KNN = modelo_KNN.predict(x_test)
+y_predict_KNNP
+
+acuracia = accuracy_score(y_test, y_predict_KNN)
+
+'''
+=======================
+    DECISION TREE
+=======================
+'''
+
+modelo_tree = DecisionTreeClassifier()
+modelo_tree.fit(x_train, x_test)
+
+y_predict_tree = modelo_tree.predict(x_test)
+acuracia2 = accuracy_score(y_test, y_predict_tree)
